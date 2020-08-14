@@ -2,7 +2,7 @@
 
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen)](https://lbesson.mit-license.org/)
 ![Python](https://img.shields.io/badge/language-Python-brightgreen)
-![Version](https://img.shields.io/badge/python-3.6%20%7C%203.7-blue)
+![Version](https://img.shields.io/badge/python-3.6%20%7C%203.7-brightgreen)
 
 ## Overview
 A simple learning application implemented with [Flask](https://flask.palletsprojects.com/en/1.1.x/) and [Vue.js](https://vuejs.org/) for memorizing Chinese characters and quizzing on them.
