@@ -9,15 +9,15 @@ A simple learning application implemented with [Flask](https://flask.palletsproj
 
 ## Features
 
--[] Sign in and Sign up pages
--[] User authentication profile
--[] Quiz on the 
--[] Group of characters
--[] Adding new character and meaning to the database
--[] Edit and remove characters
--[] Statistics on knowledge of the characters
+-[ ] Sign in and Sign up pages
+-[ ] User authentication profile
+-[ ] Quiz on the 
+-[ ] Group of characters
+-[ ] Adding new character and meaning to the database
+-[ ] Edit and remove characters
+-[ ] Statistics on knowledge of the characters
 -[x] Show data on an HTML table
--[] Save data to MongoDB database
+-[ ] Save data to MongoDB database
 
 ## Built With
 
