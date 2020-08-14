@@ -1,0 +1,221 @@
+let charactersData = [{
+    id: 1,
+    character: "男孩",
+    english: "boy",
+    group: "family"
+}, {
+    id: 2,
+    character: "女孩",
+    english: "girl",
+    group: "family"
+}, {
+    id: 3,
+    character: "女人",
+    english: "woman",
+    group: "family"
+}, {
+    id: 4,
+    character: "男人",
+    english: "man",
+    group: "family"
+}, {
+    id: 5,
+    character: "女性",
+    english: "female",
+    group: "family"
+}, {
+    id: 6,
+    character: "男性",
+    english: "male",
+    group: "family"
+}, {
+    id: 7,
+    character: "儿子",
+    english: "son",
+    group: "family"
+}, {
+    id: 8,
+    character: "女儿",
+    english: "daughter",
+    group: "family"
+}, {
+    id: 9,
+    character: "孩子",
+    english: "child",
+    group: "family"
+}, {
+    id: 10,
+    character: "母亲",
+    english: "mother",
+    group: "family"
+}, {
+    id: 11,
+    character: "父亲",
+    english: "father",
+    group: "family"
+}, {
+    id: 12,
+    character: "妹妹",
+    english: "sister",
+    group: "family"
+}, {
+    id: 13,
+    character: "哥哥",
+    english: "brother",
+    group: "family"
+}, {
+    id: 14,
+    character: "红色",
+    english: "red",
+    group: "color"
+}, {
+    id: 15,
+    character: "绿色",
+    english: "green",
+    group: "color"
+}, {
+    id: 16,
+    character: "蓝色",
+    english: "blue",
+    group: "color"
+}, {
+    id: 17,
+    character: "黄色",
+    english: "yellow",
+    group: "color"
+}, {
+    id: 18,
+    character: "黑色",
+    english: "black",
+    group: "color"
+}, {
+    id: 19,
+    character: "白色",
+    english: "white",
+    group: "color"
+}, {
+    id: 20,
+    character: "一",
+    english: "one",
+    group: "number"
+}, {
+    id: 21,
+    character: "二",
+    english: "two",
+    group: "number"
+}, {
+    id: 22,
+    character: "三",
+    english: "three",
+    group: "number"
+}, {
+    id: 23,
+    character: "四",
+    english: "four",
+    group: "number"
+}, {
+    id: 24,
+    character: "五",
+    english: "five",
+    group: "number"
+}, {
+    id: 25,
+    character: "六",
+    english: "six",
+    group: "number"
+}, {
+    id: 26,
+    character: "七",
+    english: "seven",
+    group: "number"
+}, {
+    id: 27,
+    character: "八",
+    english: "eight",
+    group: "number"
+}, {
+    id: 28,
+    character: "九",
+    english: "nine",
+    group: "number"
+}, {
+    id: 29,
+    character: "十",
+    english: "ten",
+    group: "number"
+}, {
+    id: 30,
+    character: "百",
+    english: "hundred",
+    group: "number"
+}, {
+    id: 31,
+    character: "我",
+    english: "I",
+    group: "pronoun"
+}, {
+    id: 32,
+    character: "你",
+    english: "you",
+    group: "pronoun"
+}, {
+    id: 33,
+    character: "名字",
+    english: "first name",
+    group: "greeting"
+}, {
+    id: 34,
+    character: "姓",
+    english: "last name",
+    group: "greeting"
+}, {
+    id: 35,
+    character: "再见",
+    english: "bye",
+    group: "greeting"
+}, {
+    id: 36,
+    character: "你好",
+    english: "hi",
+    group: "greeting"
+}, {
+    id: 37,
+    character: "零",
+    english: "zero",
+    group: "number"
+}, {
+    id: 38,
+    character: "他",
+    english: "he",
+    group: "pronoun"
+}, {
+    id: 39,
+    character: "她",
+    english: "she",
+    group: "pronoun"
+}, {
+    id: 40,
+    character: "它",
+    english: "it",
+    group: "pronoun"
+}, {
+    id: 41,
+    character: "我们",
+    english: "we",
+    group: "pronoun"
+}, {
+    id: 42,
+    character: "他们",
+    english: "they",
+    group: "pronoun"
+}, {
+    id: 43,
+    character: "是",
+    english: "to be",
+    group: "pronoun"
+}, {
+    id: 44,
+    character: "猫",
+    english: "cat",
+    group: "animal"
+}];
