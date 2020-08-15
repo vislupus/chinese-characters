@@ -13,3 +13,88 @@ Vue.component('add-svg', {
                     <path fill="#fff" d="M15,22h18v4H15V22z"></path>
                 </svg>`
 });
+
+Vue.component('nav-bar', {
+    template: `<div id="navigation">
+                    <a id="dictionaryMenu" :class="{ active: seenDictionary }" @click="$emit('click-nav', 'dictionary')">Dictionary</a>
+                    <a id="quizMenu" :class="{ active: seenQuiz }" @click="$emit('click-nav', 'quiz')">Quiz</a>
+                    <a id="scoreMenu" :class="{ active: seenScore }" @click="$emit('click-nav', 'score')">Score</a>
+               </div>`,
+    props: ["seen-dictionary", "seen-quiz", "seen-score", ]
+});
+
+Vue.component('update-form', {
+    template: `<div id="update_form" v-if="seenTable" ref="update_form">
+                    <input class="input" type="text" id="update_character" v-model="characterInput" ref="character">
+                    <input class="input" type="text" id="update_english" v-model="englishInput" ref="english">
+                    <input class="input" type="text" id="update_group" v-model="groupInput" ref="group">
+
+                    <button id="update_button" @click="$emit('click-u')">Edit</button>
+                    <close-svg @click.native="$emit('click-ue')"></close-svg>
+              </div>`,
+    props: ["character", "english", "group", "seen-table"],
+    computed: {
+        characterInput: {
+            get: function () {
+                return this.character;
+            },
+            set: function (newValue) {
+                this.$emit('update:character', newValue)
+            }
+        },
+        englishInput: {
+            get: function () {
+                return this.english;
+            },
+            set: function (newValue) {
+                this.$emit('update:english', newValue)
+            }
+        },
+        groupInput: {
+            get: function () {
+                return this.group;
+            },
+            set: function (newValue) {
+                this.$emit('update:group', newValue)
+            }
+        }
+    }
+});
+
+Vue.component('add-form', {
+    template: `<div id="add_form" v-if="seenAdd" :style="seenAdd ? 'display:block' : 'display:none'">
+                    <input type="text" class="input" id="add_character" placeholder="character" v-model="characterInput" ref="character">
+                    <input type="text" class="input" id="add_english" placeholder="english" v-model="englishInput" ref="english">
+                    <input type="text" class="input" id="add_group" placeholder="group" v-model="groupInput" ref="group">
+
+                    <button id="add_button" @click="$emit('click-a')">Add</button>
+                    <close-svg @click.native="$emit('click-ae')"></close-svg>
+                </div>`,
+    props: ["character", "english", "group", "seen-add"],
+    computed: {
+        characterInput: {
+            get: function () {
+                return this.character;
+            },
+            set: function (newValue) {
+                this.$emit('update:character', newValue)
+            }
+        },
+        englishInput: {
+            get: function () {
+                return this.english;
+            },
+            set: function (newValue) {
+                this.$emit('update:english', newValue)
+            }
+        },
+        groupInput: {
+            get: function () {
+                return this.group;
+            },
+            set: function (newValue) {
+                this.$emit('update:group', newValue)
+            }
+        }
+    }
+});

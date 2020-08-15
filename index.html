@@ -12,11 +12,7 @@
 
 <body>
     <div id="app">
-        <div id="navigation">
-            <a id="dictionaryMenu" :class="{ active: seenDictionary }" @click="navMenu('dictionary')">Dictionary</a>
-            <a id="quizMenu" :class="{ active: seenQuiz }" @click="navMenu('quiz')">Quiz</a>
-            <a id="scoreMenu" :class="{ active: seenScore }" @click="navMenu('score')">Score</a>
-        </div>
+        <nav-bar :seen-dictionary="seenDictionary" :seen-quiz="seenQuiz" :seen-score="seenScore" @click-nav="navMenu"></nav-bar>
 
         <div id="quiz" v-if="seenQuiz" :style="seenQuiz ? 'display:block' : 'display:none'">
             <p v-if="seenQuizTitle">Quiz</p>
@@ -43,24 +39,10 @@
         </div>
 
         <div id="dictionary" v-if="seenDictionary" :style="seenDictionary ? 'display:block' : 'display:none'">
-            <div id="update_form" v-if="seenTable" ref="update_form">
-                <input class="input" type="text" id="update_character" v-model="characterUpdate">
-                <input class="input" type="text" id="update_english" v-model="englishUpdate">
-                <input class="input" type="text" id="update_group" v-model="groupUpdate">
 
-                <button id="update_button" @click="updateButton">Edit</button>
-                <close-svg @click.native="updateExit"></close-svg>
-            </div>
+            <update-form :character="characterUpdate" :english="englishUpdate" :group="groupUpdate" :seen-table="seenTable" @click-u="updateButton" @click-ue="updateExit" ref="upd"></update-form>
 
-            <div id="add_form" v-if="seenAdd" :style="seenAdd ? 'display:block' : 'display:none'">
-                <input type="text" class="input" id="add_character" placeholder="character" v-model="characterAdd" ref="character">
-                <input type="text" class="input" id="add_english" placeholder="english" v-model="englishAdd" ref="english">
-                <input type="text" class="input" id="add_group" placeholder="group" v-model="groupAdd" ref="group">
-
-                <button id="add_button" @click="addRow">Add</button>
-                <close-svg @click.native="addExit"></close-svg>
-            </div>
-
+            <add-form :character="characterAdd" :english="englishAdd" :group="groupAdd" :seen-add="seenAdd" @click-a="addRow" @click-ae="addExit" ref="add"></add-form>
 
             <div id="search_field_container">
                 <div id="search_field">
@@ -106,6 +88,10 @@
     <script language="javascript" type="text/javascript" src="chinese.js"></script>
     <script language="javascript" type="text/javascript" src="components.js"></script>
     <script type="text/javascript">
+        //        Vue.component('add-svg', {
+        //            template: ``
+        //        });
+
         var app = new Vue({
             el: '#app',
             data: {
@@ -150,32 +136,37 @@
                     this.stopAdd_group = false;
                     this.stopAdd_both = false;
 
+                    this.englishAdd = this.$refs.add.$refs.english.value;
+                    this.characterAdd = this.$refs.add.$refs.character.value;
+                    this.groupAdd = this.$refs.add.$refs.group.value;
+
                     for (let i = 0; i < this.characters.length; i++) {
                         if (this.characterAdd == '') {
                             this.stopAdd_character = true;
-                            this.$refs.character.style.border = '1px solid red';
+                            this.$refs.add.$refs.character.style.border = '1px solid red';
                         }
 
                         if (this.englishAdd == '') {
                             this.stopAdd_english = true;
-                            this.$refs.english.style.border = '1px solid red';
+                            this.$refs.add.$refs.english.style.border = '1px solid red';
                         }
 
                         if (this.englishAdd == this.characters[i].english && this.characterAdd == this.characters[i].character) {
                             this.stopAdd_both = true;
-                            this.$refs.english.style.border = '1px solid red';
-                            this.$refs.character.style.border = '1px solid red';
+                            this.$refs.add.$refs.english.style.border = '1px solid red';
+                            this.$refs.add.$refs.character.style.border = '1px solid red';
                         }
 
                         if (this.groupAdd == '') {
                             this.stopAdd_group = true;
-                            this.$refs.group.style.border = '1px solid red';
+                            this.$refs.add.$refs.group.style.border = '1px solid red';
                         }
                     }
 
-                    if (!this.stopAdd_character && !this.stopAdd_both) this.$refs.character.style.border = '1px solid #A9A9A9';
-                    if (!this.stopAdd_english && !this.stopAdd_both) this.$refs.english.style.border = '1px solid #A9A9A9';
-                    if (!this.stopAdd_group) this.$refs.group.style.border = '1px solid #A9A9A9';
+
+                    if (!this.stopAdd_character && !this.stopAdd_both) this.$refs.add.$refs.character.style.border = '1px solid #A9A9A9';
+                    if (!this.stopAdd_english && !this.stopAdd_both) this.$refs.add.$refs.english.style.border = '1px solid #A9A9A9';
+                    if (!this.stopAdd_group) this.$refs.add.$refs.group.style.border = '1px solid #A9A9A9';
 
                     if (!this.stopAdd_character && !this.stopAdd_english && !this.stopAdd_group && !this.stopAdd_both) {
                         if (this.characters.length > 0) {
@@ -205,11 +196,11 @@
                     this.updateId = id;
 
                     this.$nextTick(function() {
-                        this.$refs.update_form.style.display = 'block';
+                        this.$refs.upd.$refs.update_form.style.display = 'block';
                         if (this.search != '') {
-                            this.$refs.update_form.style.marginTop = event.target.getBoundingClientRect().top + window.scrollY + 'px';
+                            this.$refs.upd.$refs.update_form.style.marginTop = event.target.getBoundingClientRect().top + window.scrollY + 'px';
                         } else {
-                            this.$refs.update_form.style.marginTop = this.$refs.update[id - 1].getBoundingClientRect().top + window.scrollY + 'px';
+                            this.$refs.upd.$refs.update_form.style.marginTop = this.$refs.update[id - 1].getBoundingClientRect().top + window.scrollY + 'px';
                         }
                     });
 
@@ -220,6 +211,9 @@
                 updateButton() {
                     this.seenTable = false;
 
+                    this.characterUpdate = this.$refs.upd.$refs.character.value;
+                    this.englishUpdate = this.$refs.upd.$refs.english.value;
+                    this.groupUpdate = this.$refs.upd.$refs.group.value;
 
                     this.characters[this.updateId - 1].character = this.characterUpdate;
                     this.characters[this.updateId - 1].english = this.englishUpdate;
@@ -389,10 +383,6 @@
                 }
             }
         });
-
-        //        Vue.component('add-svg', {
-        //            template: ``
-        //        });
 
     </script>
 </body>
