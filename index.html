@@ -5,355 +5,62 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
     <title>Vue.js</title>
-    <style type="text/css">
-        *,
-        *:before,
-        *:after {
-            box-sizing: border-box;
-            outline: 0 !important;
-        }
-
-        html {
-            height: 100%;
-            width: 100%;
-        }
-
-        body {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        #table {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-            margin-bottom: 2%;
-
-        }
-
-        #table td,
-        #table th {
-            border: 1px solid #ddd;
-            padding: 0.4%;
-            width: 10%;
-            text-align: center;
-        }
-
-        #table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        #table tr:hover {
-            background-color: #d9eeda;
-        }
-
-        #table th {
-            padding-top: 1%;
-            padding-bottom: 1%;
-            text-align: center;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .update {
-            background-color: gold;
-            padding: 0.5vh;
-            width: 10vw;
-            border-radius: 1vh;
-            border: 0px solid white;
-            text-decoration: none;
-        }
-
-        .delete {
-            background-color: red;
-            color: white;
-            padding: 0.5vh;
-            width: 10vw;
-            border-radius: 1vh;
-            border: 0px solid white;
-            text-decoration: none;
-        }
-
-        #add_icon_button {
-            position: fixed;
-            width: 5vw;
-            height: 5vw;
-            bottom: 1vw;
-            right: 1vw;
-        }
-
-        #add_form {
-            padding: 1.5vh;
-            border: 1px solid #000;
-            width: 20vw;
-            position: fixed;
-            background-color: beige;
-            z-index: 1000;
-            display: none;
-            border-radius: 1vw;
-            bottom: 1vw;
-            right: 6vw;
-        }
-
-        #add_button {
-            background-color: darkgreen;
-            color: white;
-            padding: 0.5vh;
-            width: 100%;
-            border-radius: 1vh;
-            border: 0px solid white;
-            text-decoration: none;
-        }
-
-        #update_form {
-            margin: 0 76vw;
-            padding: 1.5vh;
-            border: 1px solid #000;
-            width: 15vw;
-            position: absolute;
-            background-color: beige;
-            z-index: 1000;
-            display: none;
-            border-radius: 1vw;
-            top: 0;
-        }
-
-        #update_button {
-            background-color: midnightblue;
-            color: white;
-            padding: 0.5vh;
-            width: 100%;
-            border-radius: 1vh;
-            border: 0px solid white;
-            text-decoration: none;
-        }
-
-        #update_exit {
-            position: absolute;
-            cursor: pointer;
-            height: 2vw;
-            width: 2vw;
-            right: -1vw;
-            top: -1vw;
-        }
-
-        #update_exit>circle {
-            fill: grey;
-        }
-
-        #update_exit>path {
-            stroke: white;
-        }
-
-        #update_exit:hover>circle {
-            stroke: black;
-            stroke-width: 0.9;
-            fill: red;
-        }
-
-        #update_exit:hover>path {
-            stroke: white;
-        }
-
-        .input {
-            width: 100%;
-            margin-bottom: 0.9vh;
-        }
-
-        #search_field {
-            width: 30vw;
-            margin: 1vw auto;
-        }
-
-        #search_field select {
-            border: solid 1px black;
-            border-radius: 1vw 0vw 0vw 1vw;
-            height: 5vh;
-            width: 30%;
-            margin: 0;
-            padding-left: 0.5vw;
-        }
-
-        #search_field input {
-            border: solid 1px black;
-            border-radius: 0vw 1vw 1vw 0vw;
-            height: 5vh;
-            width: 70%;
-            padding-left: 1vw;
-            margin-left: -0.6vw;
-        }
-
-        #navigation {
-            background-color: #333;
-            overflow: hidden;
-        }
-
-        #navigation a {
-            float: left;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        #navigation a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        #navigation a.active {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        #quiz {
-            display: none;
-        }
-
-        #dictionary {
-            display: none;
-        }
-
-        #score {
-            display: none;
-        }
-
-        .groups {
-            width: auto;
-            float: left;
-            background-color: antiquewhite;
-            margin-left: 1vw;
-            padding: 0.5vw;
-        }
-
-        #container {
-            width: 100vw;
-            height: 30vw;
-            margin: 4vh auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .problem {
-            font-size: 10vw;
-            background-color: aliceblue;
-            margin-bottom: 15vh;
-        }
-
-        #containerAns {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: antiquewhite;
-        }
-
-        .boxAns {
-            width: auto;
-            height: 6vw;
-            background-color: #005EAD;
-            float: left;
-            margin-left: 2vw;
-            margin-right: 2vw;
-            margin-top: -10vh;
-            line-height: 6.4vw;
-            text-align: center;
-            font-size: 3vw;
-            font-family: sans-serif;
-            border-radius: 1vw;
-            padding: 0 1vw;
-        }
-
-        .boxAnsChar {
-            width: auto;
-            background-color: #005EAD;
-            float: left;
-            margin-left: 2vw;
-            margin-right: 2vw;
-            margin-top: -10vh;
-            font-size: 7vw;
-            border-radius: 1vw;
-            padding: 0 1vw;
-        }
-
-        progress[value] {
-            width: 90vw;
-            height: 5vh;
-            -webkit-appearance: none;
-            appearance: none;
-            margin-bottom: 5vh;
-        }
-
-        progress[value]::-webkit-progress-bar {
-            background-color: #eee;
-            border-radius: 2px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
-        }
-
-        progress[value]::-webkit-progress-value {
-            background-image:
-                -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)),
-                -webkit-linear-gradient(left, #09c, #f44);
-
-            border-radius: 2px;
-            background-size: 35px 5vh, 100% 100%, 100% 100%;
-        }
-
-    </style>
 </head>
 
 <body>
     <div id="app">
         <div id="navigation">
-            <a id="dictionaryMenu" v-bind:class="{ active: seenDictionary }" v-on:click="navMenu('dictionary')">Dictionary</a>
-            <a id="quizMenu" v-bind:class="{ active: seenQuiz }" v-on:click="navMenu('quiz')">Quiz</a>
-            <a id="scoreMenu" v-bind:class="{ active: seenScore }" v-on:click="navMenu('score')">Score</a>
+            <a id="dictionaryMenu" :class="{ active: seenDictionary }" @click="navMenu('dictionary')">Dictionary</a>
+            <a id="quizMenu" :class="{ active: seenQuiz }" @click="navMenu('quiz')">Quiz</a>
+            <a id="scoreMenu" :class="{ active: seenScore }" @click="navMenu('score')">Score</a>
         </div>
 
-        <div id="quiz" v-if="seenQuiz" v-bind:style="seenQuiz ? 'display:block' : 'display:none'">
+        <div id="quiz" v-if="seenQuiz" :style="seenQuiz ? 'display:block' : 'display:none'">
             <p v-if="seenQuizTitle">Quiz</p>
-            <div v-if="seenQuizGroups" class="groups" v-for="i in uniqueValues" v-bind:data-group="i" v-on:click="quiz(i)" v-bind:style="{'background-color': uniqueGroupsCount[i] >= 4 ? 'green' : 'red'}">{{i}}</div>
+            <div id="group-container">
+                <div v-if="seenQuizGroups" class="groups" v-for="i in uniqueValues" :data-group="i" @click="quiz(i)" :style="{'background-color': uniqueGroupsCount[i] >= 4 ? 'green' : 'red'}">{{i}}</div>
+            </div>
 
             <template v-if="seenQuizProblem">
                 <div id="container">
-                    <progress v-bind:value="answers" max="10"> {{ answers }}% </progress>
+                    <progress :value="answers" max="10"> {{ answers }}% </progress>
                     <div class="problem">{{ problem }}</div>
                     <div id="containerAns">
-                        <div id="box_1" v-bind:class="randomLanguage == 0 ? 'boxAns' : 'boxAnsChar'" v-on:click="check(correctNum(nAns, 1))">{{diffNumbers(nAns, 1)}}</div>
-                        <div id="box_2" v-bind:class="randomLanguage == 0 ? 'boxAns' : 'boxAnsChar'" v-on:click="check(correctNum(nAns, 2))">{{diffNumbers(nAns, 2)}}</div>
-                        <div id="box_3" v-bind:class="randomLanguage == 0 ? 'boxAns' : 'boxAnsChar'" v-on:click="check(correctNum(nAns, 3))">{{diffNumbers(nAns, 3)}}</div>
-                        <div id="box_4" v-bind:class="randomLanguage == 0 ? 'boxAns' : 'boxAnsChar'" v-on:click="check(correctNum(nAns, 4))">{{diffNumbers(nAns, 4)}}</div>
+                        <div id="box_1" :class="randomLanguage == 0 ? 'boxAns' : 'boxAnsChar'" @click="check(correctNum(nAns, 1))">{{diffNumbers(nAns, 1)}}</div>
+                        <div id="box_2" :class="randomLanguage == 0 ? 'boxAns' : 'boxAnsChar'" @click="check(correctNum(nAns, 2))">{{diffNumbers(nAns, 2)}}</div>
+                        <div id="box_3" :class="randomLanguage == 0 ? 'boxAns' : 'boxAnsChar'" @click="check(correctNum(nAns, 3))">{{diffNumbers(nAns, 3)}}</div>
+                        <div id="box_4" :class="randomLanguage == 0 ? 'boxAns' : 'boxAnsChar'" @click="check(correctNum(nAns, 4))">{{diffNumbers(nAns, 4)}}</div>
                     </div>
                 </div>
             </template>
-
         </div>
 
-        <div id="score" v-if="seenScore" v-bind:style="seenScore ? 'display:block' : 'display:none'">
+        <div id="score" v-if="seenScore" :style="seenScore ? 'display:block' : 'display:none'">
             <p>Score</p>
         </div>
 
-        <div id="dictionary" v-if="seenDictionary" v-bind:style="seenDictionary ? 'display:block' : 'display:none'">
+        <div id="dictionary" v-if="seenDictionary" :style="seenDictionary ? 'display:block' : 'display:none'">
             <div id="update_form" v-if="seenTable" ref="update_form">
                 <input class="input" type="text" id="update_character" v-model="characterUpdate">
                 <input class="input" type="text" id="update_english" v-model="englishUpdate">
                 <input class="input" type="text" id="update_group" v-model="groupUpdate">
 
-                <button id="update_button" v-on:click="updateButton">Edit</button>
-                <closesvg v-on:click.native="updateExit"></closesvg>
+                <button id="update_button" @click="updateButton">Edit</button>
+                <close-svg @click.native="updateExit"></close-svg>
             </div>
 
-            <div id="add_form" v-if="seenAdd" v-bind:style="seenAdd ? 'display:block' : 'display:none'">
+            <div id="add_form" v-if="seenAdd" :style="seenAdd ? 'display:block' : 'display:none'">
                 <input type="text" class="input" id="add_character" placeholder="character" v-model="characterAdd" ref="character">
                 <input type="text" class="input" id="add_english" placeholder="english" v-model="englishAdd" ref="english">
                 <input type="text" class="input" id="add_group" placeholder="group" v-model="groupAdd" ref="group">
 
-                <button id="add_button" v-on:click="addRow">Add</button>
-                <closesvg v-on:click.native="addExit"></closesvg>
+                <button id="add_button" @click="addRow">Add</button>
+                <close-svg @click.native="addExit"></close-svg>
             </div>
+
 
             <div id="search_field_container">
                 <div id="search_field">
@@ -365,6 +72,7 @@
                     <input type="text" id="search" v-model="search" placeholder="🔍 Search...">
                 </div>
             </div>
+
 
             <table id="table">
                 <tbody>
@@ -382,24 +90,21 @@
                         <td>{{ i.english }}</td>
                         <td>{{ i.group }}</td>
                         <td>
-                            <button type="button" v-bind:id=`update_${i.id}` class="update" v-on:click="updateRow(i.id)" ref="update">Update {{i.id}}</button>
+                            <button type="button" :id=`update_${i.id}` class="update" @click="updateRow(i.id)" ref="update">Update {{i.id}}</button>
                         </td>
                         <td>
-                            <button type="button" v-bind:id=`delete_${i.id}` class="delete" v-on:click="deleteRow(i.id)">Delete {{i.id}}</button>
+                            <button type="button" :id=`delete_${i.id}` class="delete" @click="deleteRow(i.id)">Delete {{i.id}}</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <svg id="add_icon_button" v-on:click="addData" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48" style=" fill:#000000;">
-                <path fill="#4caf50" d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
-                <path fill="#fff" d="M22,15h4v18h-4V15z"></path>
-                <path fill="#fff" d="M15,22h18v4H15V22z"></path>
-            </svg>
+            <add-svg @click.native="addData"></add-svg>
         </div>
     </div>
 
     <script language="javascript" type="text/javascript" src="chinese.js"></script>
+    <script language="javascript" type="text/javascript" src="components.js"></script>
     <script type="text/javascript">
         var app = new Vue({
             el: '#app',
@@ -678,23 +383,16 @@
                         return self.indexOf(value) === index
                     });
 
-                    //                    this.uniqueGroups = [...new Set(this.characters.map(item => item.group))];
-
                     this.uniqueGroupsCount = this.characters.reduce((acc, item) => (acc[item.group] = (acc[item.group] || 0) + 1, acc), {});
 
                     return this.uniqueGroups;
                 }
-            },
-            components: {
-                'closesvg': {
-                    template: `<svg id="update_exit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23" >
-                                    <circle cx="12" cy="12" r="11" fill="grey" />
-                                    <path stroke="white" stroke-width="4" fill="none" d="M6.25,6.25,17.75,17.75" />
-                                    <path stroke="white" stroke-width="4" fill="none" d="M6.25,17.75,17.75,6.25" />
-                               </svg>`
-                }
             }
         });
+
+        //        Vue.component('add-svg', {
+        //            template: ``
+        //        });
 
     </script>
 </body>
