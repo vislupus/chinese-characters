@@ -11,11 +11,11 @@ A simple learning application implemented with [Flask](https://flask.palletsproj
 
 - [ ] Sign in and Sign up pages
 - [ ] User authentication profile
-- [ ] Quiz for testing the knowledge of the characters
-- [ ] Group of characters
-- [ ] Adding new character and meaning to the database
-- [ ] Edit and remove characters from the database
-- [ ] Statistics on knowledge of the characters
+- [x] Quiz for testing the knowledge of the characters
+- [x] Group of characters
+- [x] Adding new character and meaning to the database
+- [x] Edit and remove characters from the database
+- [x] Statistics on knowledge of the characters
 - [x] Show data on an HTML table
 - [ ] Save data to MongoDB database
 
