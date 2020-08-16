@@ -202,6 +202,7 @@ body {
 
 #quiz {
     display: none;
+    text-align: center;
 }
 
 #dictionary {
@@ -284,8 +285,7 @@ body {
 
 .boxAns {
     width: auto;
-    height: 6vw;
-    background-color: #005EAD;
+    background-color: #cce6ff;
     float: left;
     margin-left: 2vw;
     margin-right: 2vw;
@@ -296,11 +296,12 @@ body {
     font-family: sans-serif;
     border-radius: 1vw;
     padding: 0 1vw;
+    border: 0.1vw solid black;
 }
 
 .boxAnsChar {
     width: auto;
-    background-color: #005EAD;
+    background-color: #cce6ff;
     float: left;
     margin-left: 2vw;
     margin-right: 2vw;
@@ -308,6 +309,7 @@ body {
     font-size: 7vw;
     border-radius: 1vw;
     padding: 0 1vw;
+    border: 0.1vw solid black;
 }
 
 progress[value] {

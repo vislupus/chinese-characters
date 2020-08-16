@@ -15,9 +15,9 @@
         <nav-bar :seen-dictionary="seenDictionary" :seen-quiz="seenQuiz" :seen-score="seenScore" @click-nav="navMenu"></nav-bar>
 
         <div id="quiz" v-if="seenQuiz" :style="seenQuiz ? 'display:block' : 'display:none'">
-            <p v-if="seenQuizTitle">Quiz</p>
+            <h2 v-if="seenQuizTitle">Choose a group of words</h2>
             <div id="group-container">
-                <div v-if="seenQuizGroups" class="groups" v-for="i in uniqueValues" :data-group="i" @click="quiz(i)" :style="{'background-color': uniqueGroupsCount[i] >= 4 ? 'green' : 'red'}">{{i}}</div>
+                <div v-if="seenQuizGroups" class="groups" v-for="i in uniqueValues" :data-group="i" @click="quiz(i)" :style="{'background-color': uniqueGroupsCount[i] >= 4 ? colorCorr : colorWrong}">{{i}}</div>
             </div>
 
             <template v-if="seenQuizProblem">
@@ -35,7 +35,30 @@
         </div>
 
         <div id="score" v-if="seenScore" :style="seenScore ? 'display:block' : 'display:none'">
-            <p>Score</p>
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Character</th>
+                        <th>English</th>
+                        <th>Group</th>
+                        <th>Correct</th>
+                        <th>Wrong</th>
+                        <th>Percent correct</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="i in characters">
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.character }}</td>
+                        <td>{{ i.english }}</td>
+                        <td>{{ i.group }}</td>
+                        <td>{{ i.correct }}</td>
+                        <td>{{ i.wrong }}</td>
+                        <td>{{ totalScore(i) }}%</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div id="dictionary" v-if="seenDictionary" :style="seenDictionary ? 'display:block' : 'display:none'">
@@ -88,10 +111,6 @@
     <script language="javascript" type="text/javascript" src="chinese.js"></script>
     <script language="javascript" type="text/javascript" src="components.js"></script>
     <script type="text/javascript">
-        //        Vue.component('add-svg', {
-        //            template: ``
-        //        });
-
         var app = new Vue({
             el: '#app',
             data: {
@@ -121,6 +140,9 @@
                 seenQuizProblem: false,
                 nAns: 0,
                 answers: 0,
+                colorCorr: '#85e085',
+                colorWrong: '#ff6666',
+                colorNeu: '#cce6ff',
             },
             methods: {
                 addData() {
@@ -301,11 +323,17 @@
                     let target = event.target;
 
                     if (text) {
-                        target.style.backgroundColor = 'green';
+                        target.style.backgroundColor = this.colorCorr;
+
+                        for (i in this.characters) {
+                            if (this.characters[i].character == this.problem || this.characters[i].english == this.problem) {
+                                this.characters[this.characters[i].id-1].correct++;
+                            }
+                        }
 
                         setTimeout(() => {
                             this.seenQuizProblem = false;
-                            target.style.backgroundColor = '#005EAD';
+                            target.style.backgroundColor = this.colorNeu;
 
                             this.generateCorrect(this.problemArray);
                             this.answers++;
@@ -319,10 +347,16 @@
                             }
                         }, 1000);
                     } else {
-                        target.style.backgroundColor = 'red';
+                        target.style.backgroundColor = this.colorWrong;
+                        
+                        for (i in this.characters) {
+                            if (this.characters[i].character == this.problem || this.characters[i].english == this.problem) {
+                                this.characters[this.characters[i].id-1].wrong++;
+                            }
+                        }
 
                         setTimeout(() => {
-                            target.style.backgroundColor = '#005EAD';
+                            target.style.backgroundColor = this.colorNeu;
                         }, 1000);
                     }
                 },
@@ -349,6 +383,13 @@
                         if (val < maxNum - maxNum % range) {
                             return min + (val % range);
                         }
+                    }
+                },
+                totalScore(i) {
+                    if (i.correct / (i.correct + i.wrong)) {
+                        return i.correct / (i.correct + i.wrong);
+                    } else {
+                        return 0;
                     }
                 }
             },
