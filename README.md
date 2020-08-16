@@ -5,25 +5,14 @@
 ![Version](https://img.shields.io/badge/python-3.6%20%7C%203.7-brightgreen)
 
 ## Overview
-A simple learning application implemented with [Flask](https://flask.palletsprojects.com/en/1.1.x/) and [Vue.js](https://vuejs.org/) for memorizing Chinese characters and quizzing on them.
+A simple learning application implemented with [Vue.js](https://vuejs.org/). The goal of the application is to make studying Chinese characters one idea easier. There are moduls for memorizing characters and quizzing on them.
 
 ## Features
 
-- [ ] Sign in and Sign up pages
-- [ ] User authentication profile
-- [x] Quiz for testing the knowledge of the characters
-- [x] Group of characters
-- [x] Adding new character and meaning to the database
-- [x] Edit and remove characters from the database
-- [x] Statistics on knowledge of the characters
-- [x] Show data on an HTML table
-- [ ] Save data to MongoDB database
-
-## Built With
-
-- Flesk
-- Jinja2
-- Vue.js
-- AJAX
-- MongoDB
+- Quiz for testing the knowledge of the characters
+- Group of characters
+- Capability for adding new characters and meaning
+- Capability for edit and remove characters
+- Statistics of the knowledge of the characters
+- Show data on an HTML table
 
